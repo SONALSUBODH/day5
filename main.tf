@@ -46,6 +46,7 @@ data "aws_ami" "ubuntu" {
 
   owners = ["099720109477"] # Canonical
 }
+
 output "instance_ip_addr" {
   value = aws_instance.demo.public_ip
 }
