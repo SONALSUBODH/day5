@@ -1,6 +1,6 @@
 variable "sg_name" {
 type     = string
-default  = "tf_sg"
+default  = "tf_sg1"
 }
 variable "sg_description" {
 type     = string
