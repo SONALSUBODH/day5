@@ -26,10 +26,7 @@ resource "aws_security_group" "tf_sg" {
   }
 
 tags = var.sg_tags
-}
 
-data "aws_vpc" "default" {
-  default = true
 }
 data "aws_ami" "ubuntu" {
   most_recent = true
@@ -47,7 +44,7 @@ data "aws_ami" "ubuntu" {
   owners = ["099720109477"] # Canonical
 }
 resource "aws_instance" "demo" {
-  ami             = var.ami_id
+  ami             = data.aws_ami.ubuntu.id
   instance_type   = var.instance_type[0]
   security_groups = [aws_security_group.tf_sg.name]
   tags            = var.instance_tags
