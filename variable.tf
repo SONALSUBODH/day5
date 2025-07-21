@@ -15,6 +15,8 @@ default  = "vpc-05bdcc8880aab85ab"
 variable "sg_tags" {
 type     = map
 default = {
-    Name  = "Allow Tls"
+    Name  = "Allow TLS"
     Ports = "WEBSERVER PORT"
   }
+
+}
