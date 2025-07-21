@@ -3,6 +3,7 @@ resource "aws_security_group" "tf_sg" {
   description = "var.sg_description"
   vpc_id      = "var.vpc_id"
 
+
   ingress {
     description = "TLS from VPC"
     from_port   = 80
@@ -26,7 +27,6 @@ resource "aws_security_group" "tf_sg" {
 
 tags = var.sg_tags
 }
-
 
 data "aws_vpc" "default" {
   default = true
