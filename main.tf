@@ -1,32 +1,9 @@
-resource "aws_security_group" "tf_sg" {
-  name        = "var.sg_name"
-  description = "var.sg_description"
-  vpc_id      = "var.vpc_id"
-
-
-  ingress {
-    description = "TLS from VPC"
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    
+resource "aws_instance" "demo" {
+  ami             = data.aws_ami.ubuntu.id
+  instance_type   = "t2.micro"
+  tags = {
+    Name = "HelloWorld"
   }
- ingress {
-    description = "TLS from VPC"
-    from_port   = 8080
-    to_port     = 8080
-    protocol    = "tcp"
-    
-  }
-  egress {
-    from_port   = 0
-    to_port     = 0
-    protocol    = "-1"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-tags = var.sg_tags
-
 }
 data "aws_ami" "ubuntu" {
   most_recent = true
@@ -42,12 +19,7 @@ data "aws_ami" "ubuntu" {
   }
 
   owners = ["099720109477"] # Canonical
-}
-resource "aws_instance" "demo" {
-  ami             = data.aws_ami.ubuntu.id
-  instance_type   = "t2.micro"
-  security_groups = [aws_security_group.tf_sg.name]
-    tags          = var.instance_tags
+
 
 
 
