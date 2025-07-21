@@ -45,10 +45,11 @@ data "aws_ami" "ubuntu" {
 }
 resource "aws_instance" "demo" {
   ami             = data.aws_ami.ubuntu.id
-  instance_type   = var.instance_type[0]
+  instance_type   = "t2.micro"
   security_groups = [aws_security_group.tf_sg.name]
-  tags            = var.instance_tags
-  
+    tags          = var.instance_tags
+
+
 
 }
 output "instance_ip_addr" {
