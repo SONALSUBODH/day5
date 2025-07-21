@@ -46,7 +46,14 @@ data "aws_ami" "ubuntu" {
 
   owners = ["099720109477"] # Canonical
 }
+resource "aws_instance" "demo" {
+  ami             = var.ami_id
+  instance_type   = var.instance_type[0]
+  security_groups = [aws_security_group.tf_sg.name]
+  tags            = var.instance_tags
+  
 
+}
 output "instance_ip_addr" {
   value = aws_instance.demo.public_ip
 }
